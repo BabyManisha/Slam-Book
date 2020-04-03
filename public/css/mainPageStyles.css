@@ -1,0 +1,130 @@
+.main{
+    /* background-color: gray; */
+}
+
+.user-profile-pic{
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.row.center{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+    vertical-align: middle;
+}
+
+textarea{
+    width: 100%;
+}
+
+
+.question-div {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0
+}
+
+.question-div::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.question-div img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.question-div b {
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.question-div img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    color: #999;
+    float: right;
+    font-size: 10px;
+}
+
+.time-left {
+    color: #999;
+    font-size: 10px;
+}
+
+p.right{
+    text-align: right;
+}
+
+b.right{
+    float: right;
+}
+
+.fa{
+    cursor: pointer;
+}
+
+.fa.disabled{
+    color: gray;
+}
+
+.fa.enabled{
+    color: black;
+}
+
+.action-div{
+    display: flex;
+    font-size: 15px;
+}
+
+.action-div form{
+    margin-right: 20px;
+}
+
+.waiting{
+    color: lightgray;
+}
+
+.btn.time-right{
+    color: white;
+    font-size: 15px;
+}
+
+textarea.question-answer{
+    width: 80%;
+}
+
+.card-body h4, .card-body b, .card-body p{
+    font-size: 25px !important;
+    margin: 0;
+    padding: 0;
+}
+
+.card-body p{
+    font-size: 15px !important;
+    display: inline-block;
+}
+
+.people-form{
+    width: max-content;
+    float: right;
+}
+
+.card{
+    text-align: center;
+    padding: 10px;
+    background-color: #eee;
+}

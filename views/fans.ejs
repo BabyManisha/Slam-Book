@@ -1,0 +1,18 @@
+<%- include('partials/userHeader') %>
+
+<div class="container">
+  <div class="sidenav">
+    <a class="questions" href="/user/questions">Questions</a>
+    <a class="answers" href="/user/answers">Answers</a>
+    <a class="friends" href="/user/friends">Friends</a>
+    <a class="fans active" href="/user/fans">Fans</a>
+    <a class="people" href="/user/people">People</a>
+    <a class="profile" href="/user/profile">Profile</a>
+  </div>
+
+  <div class="main">
+    <%- include('peopleCard') %>
+  </div>
+</div>
+
+<%- include('partials/userFooter') %>

@@ -1,0 +1,84 @@
+<%- include('partials/userHeader') %>
+
+<div class="container">
+
+  <div class="sidenav">
+    <a class="questions active" href="/user/questions">Questions</a>
+    <a class="answers" href="/user/answers">Answers</a>
+    <a class="friends" href="/user/friends">Friends</a>
+    <a class="fans" href="/user/fans">Fans</a>
+    <a class="people" href="/user/people">People</a>
+    <a class="profile" href="/user/profile">Profile</a>
+  </div>
+
+  <div class="main">
+
+    <div class="questions-container">
+      <% if(questions.length > 0){ %>
+        <%  questions.forEach(function(question){ %>
+          <div class="question-div">
+            <div>
+              <img src="<%= question.askedBy ? question.askedBy.profilePic : '/images/usericon.png' %>" alt="Avatar" style="width:90px;">
+              <b><a href="<%=question.askedBy ? '/user/profile/'+question.askedBy._id : '#'%>"><%=question.askedBy ? question.askedBy.username : 'With  ♡ Slam-Book'%></a></b>
+              <p><%=question.question%></p>
+              <span class="time-right"><%=(question.createdAt).toString().substring(0, 25)%></span>
+            </div>
+            <hr class="dashed" width="100%">
+            <div>
+              <img src="<%= userDetails.profilePic || '/images/usericon.png' %>" alt="Avatar"  class="right" style="width:90px;">
+              <% if(question.answer === null){ %>
+                <form action="/user/questions/answer" method="POST">
+                  <textarea class="question-answer" rows="1" name="answer" placeholder="Answer here.." autocomplete="off" required></textarea>
+                  <input type="text" hidden name="questionid" value="<%= question._id %>">
+                  <br>
+                  <button class="btn btn-success stretched-link time-right" type="submit" value="submit"> Submit </button>
+                </form>
+              <%  }else{ %>
+                <p class="right"><%= question.answer %></p>
+              <%  } %>
+              <!-- <span class="time-right"><%=(question.updatedAt).toString().substring(0, 25)%></span> -->
+            </div>
+
+            <br>
+
+            <div class="action-div time-right">
+              <% if(question.likedBy && question.likedBy.length > 0  && question.likedBy.indexOf(userDetails._id) > -1){ %>
+                <form action="/user/questions/dislike" method="POST" id="<%= `dislike-${question._id}` %>">
+                  <input type="text" hidden name="questionid" value="<%= question._id %>">
+                  <i class="fa fa-thumbs-up enabled" title="DisLike"
+                  onclick="document.getElementById('<%= `dislike-${question._id}` %>').submit();"> <%= question.likedBy ? question.likedBy.length : 0 %> </i>
+                </form>
+              <%  }else{ %>
+                <form action="/user/questions/like" method="POST" id="<%= `like-${question._id}` %>">
+                  <input type="text" hidden name="questionid" value="<%= question._id %>">
+                  <i class="fa fa-thumbs-up disabled" title="Like"
+                  onclick="document.getElementById('<%= `like-${question._id}` %>').submit();"> <%= question.likedBy ? question.likedBy.length : 0 %> </i>
+                </form>
+              <%  } %>
+              
+              <% if(question.subscribedBy && question.subscribedBy.length > 0  && question.subscribedBy.indexOf(userDetails._id) > -1){ %>
+              <form action="/user/questions/unsubscribe" method="POST" id="<%= `unsubscribe-${question._id}` %>">
+                <input type="text" hidden name="questionid" value="<%= question._id %>">
+                <i class="fa fa-heart enabled" title="Un Subscribe"
+                  onclick="document.getElementById('<%= `unsubscribe-${question._id}` %>').submit();"> <%= question.subscribedBy ? question.subscribedBy.length : 0 %> </i>
+              </form>
+              <%  }else{ %>
+                <form action="/user/questions/subscribe" method="POST" id="<%= `subscribe-${question._id}` %>">
+                  <input type="text" hidden name="questionid" value="<%= question._id %>">
+                  <i class="fa fa-heart disabled" title="Subscribe"
+                  onclick="document.getElementById('<%= `subscribe-${question._id}` %>').submit();"> <%= question.subscribedBy ? question.subscribedBy.length : 0 %> </i>
+                </form>
+              <%  } %>
+            </div>
+        </div>
+        <%  }) %>
+      <%  }else{ %>
+        <h1>You didn't have any Questions!!</h1>
+      <%  } %>
+    </div>
+    
+  </div>
+
+</div>
+
+<%- include('partials/userFooter') %>

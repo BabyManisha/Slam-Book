@@ -1,0 +1,32 @@
+<header class="section-header">
+  <section class="header-main border-bottom">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-sm-4 col-md-4 col-5"> 
+          <a href="/user/questions" class="brand-wrap" data-abc="true">
+            <i class="fas fa-book fa-2x"></i>
+             <span class="logo">Slam-Book</span>
+          </a> 
+        </div>
+      <div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
+        <form action="/user/search" class="search-wrap" method="POSt">
+          <div class="input-group w-100">
+            <input type="text" name="name" class="form-control search-form" style="width:55%;" placeholder="Search for People">
+            <div class="input-group-append"> 
+              <button class="btn btn-dark search-button" type="submit"> <i class="fa fa-search"></i> </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-5 col-xl-4 col-sm-8 col-md-4 col-7">
+        <div class="d-flex justify-content-end">
+          <span>
+            <b class="user-name"><%= userDetails.username %></b>
+            <a href="/user/profile"><img class="user-icon" src="<%= userDetails.profilePic || '/images/usericon.png' %>" alt="profilePic"></a>
+            <a href="/logout" title="Logout"><i class="fa fa-sign-out-alt"></i></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>

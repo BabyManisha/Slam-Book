@@ -1,0 +1,31 @@
+<div class="card-columns">
+  <% if(people.length > 0){ %>
+    <% people.forEach(function(person){ %>
+      <% if(person.id !== userDetails.id){ %>
+      <div class="card">
+        <img class="card-img-top user-profile-pic" src="<%=person.profilePic || '/images/usericon.png' %>" alt="profilePic" />
+        <div class="card-body">
+          <h4 class="card-title"><a href="profile/<%=person._id%>"><%=person.username%></a></h4>
+          <p>Friends ( <%= person.friends ? person.friends.length : 0%> )</p> <b> & </b>
+          <p>Fans ( <%= person.fans ? person.fans.length : 0%> )</p>
+          <div class="people-form">
+            <% if(userDetails.friends && userDetails.friends.length > 0 && userDetails.friends.includes(person._id)){ %>
+              <form action="/user/unfriend" method="POST">
+                <input type="text" hidden name="userid" value="<%= person._id %>">
+                <button class="btn btn-warning stretched-link">UnFriend &nbsp;<i class="fa fa-sad-tear"></i> </button>
+              </form>
+            <%  }else{ %>
+              <form action="/user/friend" method="POST">
+                <input type="text" hidden name="userid" value="<%= person._id %>">
+                <button class="btn btn-success stretched-link">Friend &nbsp;<i class="fa fa-smile"> </i></button>
+              </form>
+            <%  } %>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    <%  }) %>
+  <% }else{ %>
+      <h1>No Results Found..!!</h1>
+  <% } %>
+</div>

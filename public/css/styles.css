@@ -1,0 +1,77 @@
+body {
+  background-color: #E4E9FD;
+}
+
+body .home::after {
+  content: "";
+  background-image: url(https://source.unsplash.com/1400x900/?nature,water,weather);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+body, .jumbotron{
+  background-color: transparent !important;
+  /* font-family: 'Kaushan Script', cursive; */
+  /* font-family: 'Caveat', cursive; */
+  font-family: 'Crimson Text', serif;
+}
+
+hr{
+  margin-right: 60%;
+  border-bottom: 2px dotted;
+}
+
+h1 {
+  color: yellowgreen;
+  padding: 10px;
+  display: inline;
+}
+
+p {
+  margin: 0;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: black;
+}
+
+.btns-center{
+  margin-right: 60%;
+  text-transform: lowercase;
+}
+
+.weather-app{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.boat-app{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  color: white;
+}
+
+center{
+  text-transform: capitalize;
+}
+
+canvas{
+  align-content: flex-end;
+  position: fixed;
+  top: 200px;
+  left: 300px;
+}
+
+.jumbotron{
+  padding-top: 250px;
+  padding-left: 800px;
+}

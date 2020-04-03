@@ -1,0 +1,46 @@
+
+.sidenav {
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    padding-top: 15%;
+    /* padding-left: 100px; */
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    /* border-right: 5px solid black; */
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+  
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+  
+.main {
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    padding-top: 70px;
+    margin-bottom: 50px;
+}
+  
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.sidenav a.active{
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}

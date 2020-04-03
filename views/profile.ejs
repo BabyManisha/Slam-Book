@@ -1,0 +1,103 @@
+<%- include('partials/userHeader') %>
+
+<div class="container">
+  <div class="sidenav">
+    <a class="questions" href="/user/questions">Questions</a>
+    <a class="answers" href="/user/answers">Answers</a>
+    <a class="friends" href="/user/friends">Friends</a>
+    <a class="fans" href="/user/fans">Fans</a>
+    <a class="people" href="/user/people">People</a>
+    <a class="profile active" href="/user/profile">Profile</a>
+  </div>
+
+  <div class="main">
+    <div>
+      <img src="<%= profile.profilePic || '/images/usericon.png' %>" alt="profilePic" class="user-profile-pic">
+      <h1 class="user-name"><%= profile.username %> - </h1>
+      <b>Friends ( <%= profile.friends ? profile.friends.length : 0 %> ) 
+        <h1> & </h1> Fans ( <%= profile.fans ? profile.fans.length : 0 %> )
+      </b>
+    </div>
+    <hr class="dashed" width="100%">
+    <div class="row center">
+      <% if(profile._id !== userDetails._id){ %>
+        <div class="col col-2">
+        <% if(userDetails.friends && userDetails.friends.length > 0 && userDetails.friends.includes(profile._id)){ %>
+          <form action="/user/unfriend" method="POST">
+            <input type="text" hidden name="userid" value="<%= profile._id %>">
+            <button class="btn btn-warning stretched-link">UnFriend &nbsp;<i class="fa fa-sad-tear"></i></button>
+          </form>
+        <%  }else{ %>
+          <form action="/user/friend" method="POST">
+            <input type="text" hidden name="userid" value="<%= profile._id %>">
+            <button class="btn btn-success stretched-link">Friend &nbsp;<i class="fa fa-smile"></i> </button>
+          </form>
+        <%  } %>
+        </div>
+        <div class="col col-10">
+          <form class="item" action="/user/questions/add" method="post">
+            <textarea rows="1" name="question" placeholder="New Question..??" autocomplete="off" required></textarea>
+            <input type="text" name="userid" hidden value="<%= profile._id %>">
+            <button class="btn btn-primary stretched-link time-right" type="submit" value="submit"> Ask! </button>
+          </form>
+        </div>
+      <%  } %>
+    </div>
+
+    <hr class="dashed" width="100%">
+
+    <div class="questions-container">
+      <%  questions.forEach(function(question){ %>
+        <div class="question-div">
+          <div>
+            <img src="<%= question.askedBy ? question.askedBy.profilePic : '/images/usericon.png' %>" alt="Avatar" style="width:90px;">
+            <b><a href="<%=question.askedBy ? '/user/profile/'+question.askedBy._id : '#'%>"><%=question.askedBy ? question.askedBy.username : 'With  ♡ Slam-Book'%></a></b>
+            <p><%=question.question%></p>
+            <span class="time-right"><%=(question.createdAt).toString().substring(0, 25)%></span>
+          </div>
+          <% if(question.answer !== null){ %>
+            <hr class="dashed" width="100%">
+            <div>
+              <img src="<%= profile.profilePic || '/images/usericon.png' %>" alt="Avatar" class="right" style="width:90px;">
+              <p class="right"><%= question.answer %></p>
+              <!-- <span class="time-right"><%=(question.updatedAt).toString().substring(0, 25)%></span> -->
+            </div>
+          <% } %>
+
+          <br>
+
+          <div class="action-div time-right">
+            <% if(question.likedBy && question.likedBy.length > 0  && question.likedBy.indexOf(userDetails._id) > -1){ %>
+              <form action="/user/questions/dislike" method="POST" id="<%= `dislike-${question._id}` %>">
+                <input type="text" hidden name="questionid" value="<%= question._id %>">
+                <i class="fa fa-thumbs-up enabled" title="DisLike"
+                 onclick="document.getElementById('<%= `dislike-${question._id}` %>').submit();"> <%= question.likedBy ? question.likedBy.length : 0 %> </i>
+              </form>
+            <%  }else{ %>
+              <form action="/user/questions/like" method="POST" id="<%= `like-${question._id}` %>">
+                <input type="text" hidden name="questionid" value="<%= question._id %>">
+                <i class="fa fa-thumbs-up disabled" title="Like"
+                 onclick="document.getElementById('<%= `like-${question._id}` %>').submit();"> <%= question.likedBy ? question.likedBy.length : 0 %> </i>
+              </form>
+            <%  } %>
+            
+            <% if(question.subscribedBy && question.subscribedBy.length > 0  && question.subscribedBy.indexOf(userDetails._id) > -1){ %>
+            <form action="/user/questions/unsubscribe" method="POST" id="<%= `unsubscribe-${question._id}` %>">
+              <input type="text" hidden name="questionid" value="<%= question._id %>">
+              <i class="fa fa-heart enabled" title="Un Subscribe"
+                onclick="document.getElementById('<%= `unsubscribe-${question._id}` %>').submit();"> <%= question.subscribedBy ? question.subscribedBy.length : 0 %> </i>
+            </form>
+            <%  }else{ %>
+              <form action="/user/questions/subscribe" method="POST" id="<%= `subscribe-${question._id}` %>">
+                <input type="text" hidden name="questionid" value="<%= question._id %>">
+                <i class="fa fa-heart disabled" title="Subscribe"
+                 onclick="document.getElementById('<%= `subscribe-${question._id}` %>').submit();"> <%= question.subscribedBy ? question.subscribedBy.length : 0 %> </i>
+              </form>
+            <%  } %>
+          </div>
+      </div>
+    <%  }) %>
+  </div>
+</div>
+
+<%- include('partials/userFooter') %>

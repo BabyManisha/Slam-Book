@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Slam-Book</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="This is a Slam Book Application, Where we can ask and answer questions and will help to interact with our loved ones.">
+  <meta name="keywords" content="Slam Book, Social Networking, Ask Anything, Interactions">
+  <meta name="author" content="BabyManisha.Sunkara">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.ico" type="image/gif" sizes="16x16">
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, errorCallback);
+      } else { 
+        location.href = `/home`;
+      }
+    }
+
+    function errorCallback(error) {
+      if (error.code == error.PERMISSION_DENIED) {
+        // pop up dialog asking for location
+        location.href = `/home`;
+      }
+    }
+
+    function showPosition(position) {
+      location.href = `/home?lat=${position.coords.latitude}&long=${position.coords.longitude}`;
+    }
+    getLocation();
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>
