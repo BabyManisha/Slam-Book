@@ -57,9 +57,9 @@ setInterval(drawClock, 1000);
 function askBoat() {
   var xhttp = new XMLHttpRequest();
   const ran = Math.floor(Math.random() * 2) + 1;
-  let url = `http://api.kanye.rest/`;
+  let url = `https://api.kanye.rest/`;
   if(ran == 2){
-    url = `http://api.icndb.com/jokes/random`;
+    url = `https://api.icndb.com/jokes/random`;
   }
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
