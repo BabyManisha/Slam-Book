@@ -3,10 +3,10 @@
 <div class="container">
 
   <div class="sidenav">
-    <a class="questions active" href="/user/questions">Questions</a>
-    <a class="answers" href="/user/answers">Answers</a>
-    <a class="friends" href="/user/friends">Friends</a>
-    <a class="fans" href="/user/fans">Fans</a>
+    <a class="questions active" href="/user/questions">Questions (<%= userDetails.questions ? userDetails.questions.length : 0 %>)</a>
+    <a class="answers" href="/user/answers">Answers (<%= userDetails.answers ? userDetails.answers.length : 0 %>)</a>
+    <a class="friends" href="/user/friends">Friends (<%= userDetails.friends ? userDetails.friends.length : 0 %>)</a>
+    <a class="fans" href="/user/fans">Fans (<%= userDetails.fans ? userDetails.fans.length : 0 %>)</a>
     <a class="people" href="/user/people">People</a>
     <a class="profile" href="/user/profile">Profile</a>
   </div>
