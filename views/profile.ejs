@@ -50,7 +50,7 @@
       <%  questions.forEach(function(question){ %>
         <div class="question-div">
           <div>
-            <img src="<%= question.askedBy ? question.askedBy.profilePic : '/images/usericon.png' %>" alt="Avatar" style="width:90px;">
+            <img src="<%= question.askedBy ? (question.askedBy.profilePic || '/images/usericon.png') : '/images/usericon.png' %>" alt="Avatar" style="width:90px;">
             <b><a href="<%=question.askedBy ? '/user/profile/'+question.askedBy._id : '#'%>"><%=question.askedBy ? question.askedBy.username : 'With  ♡ Slam-Book'%></a></b>
             <p><%=question.question%></p>
             <span class="time-right"><%=(question.createdAt).toString().substring(0, 25)%></span>
